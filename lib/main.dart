@@ -1,6 +1,8 @@
-import 'package:cooking_app/screens/category_meals_screen.dart';
+import 'package:cooking_app/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
 
+import './screens/category_meals_screen.dart';
+import './screens/meal_details_screen.dart';
 import 'screens/categories_screen.dart';
 
 void main() => runApp(MyApp());
@@ -24,9 +26,13 @@ class MyApp extends StatelessWidget {
      // home: CategoriesScreen(), or  we can use route method
       initialRoute: '/',      //   ***********// default as '/'
       routes: {
-        '/' : (ctx) => CategoriesScreen(),
-        CategoryMealsScreen.routeName : (ctx) => CategoryMealsScreen(),  //  or // '/category-meal': (ctx) => CategoryMealsScreen(),
+        '/' : (ctx) => TabsScreen(),
+        CategoryMealsScreen.routeName : (ctx) => CategoryMealsScreen(), //  or // '/category-meal': (ctx) => CategoryMealsScreen(),
+        MealDetailScreen.routeName : (ctx) => MealDetailScreen(),
       },
+      onUnknownRoute: (setting){
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      }, //  **** If Screen crachs or something happens ***
     );
   }
 }
